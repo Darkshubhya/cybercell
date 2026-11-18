@@ -54,14 +54,15 @@
       --shadow-lg: 0 10px 24px rgba(0,0,0,.55);
     }
     *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+    html,body{max-width:100%;overflow-x:hidden;width:100%}
     body{font-family:'Inter',-apple-system,BlinkMacSystemFont,sans-serif;background:var(--bg);color:var(--text);line-height:1.5;min-height:100vh;display:flex;flex-direction:column;-webkit-font-smoothing:antialiased;transition:background .22s,color .22s}
 
     /* ── Tricolor strip ── */
-    .tricolor{height:5px;background:linear-gradient(90deg,#ff9933 0%,#ff9933 33.3%,#fff 33.3%,#fff 66.6%,#138808 66.6%);box-shadow:0 1px 4px rgba(0,0,0,.18)}
+    .tricolor{height:5px;background:linear-gradient(90deg,#ff9933 0%,#ff9933 33.3%,#fff 33.3%,#fff 66.6%,#138808 66.6%);box-shadow:0 1px 4px rgba(0,0,0,.18);width:100%}
 
     /* ── Header ── */
-    .site-header{background:linear-gradient(135deg,var(--navy) 0%,var(--navy-light) 100%);border-bottom:3px solid var(--gold);box-shadow:var(--shadow-lg);position:sticky;top:0;z-index:200;transition:background .22s}
-    .header-inner{max-width:1520px;margin:0 auto;padding:.9rem 1.75rem;display:flex;align-items:center;justify-content:space-between;gap:1rem;flex-wrap:wrap}
+    .site-header{background:linear-gradient(135deg,var(--navy) 0%,var(--navy-light) 100%);border-bottom:3px solid var(--gold);box-shadow:var(--shadow-lg);position:sticky;top:0;z-index:200;transition:background .22s;width:100%}
+    .header-inner{max-width:1440px;width:100%;margin:0 auto;padding:.85rem 1.25rem;display:flex;align-items:center;justify-content:space-between;gap:1rem;flex-wrap:wrap;box-sizing:border-box}
     .brand{display:flex;align-items:center;gap:1rem}
     .emblem-wrap{width:56px;height:56px;flex-shrink:0}
     .emblem-wrap svg{width:100%;height:100%;filter:drop-shadow(0 2px 6px rgba(0,0,0,.45))}
@@ -85,11 +86,14 @@
     [data-theme="dark"] .btn-theme{background:rgba(201,151,42,.15);border-color:var(--gold);color:var(--gold-light)}
 
     /* ── Main layout ── */
-    .app{max-width:1520px;margin:1.5rem auto 3rem;padding:0 1.75rem;flex:1}
+    .app{max-width:1440px;width:100%;margin:1.25rem auto 2.5rem;padding:0 1.25rem;flex:1;min-width:0;box-sizing:border-box}
 
     /* ── KPI Cards ── */
-    .kpi-row{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:1rem;margin-bottom:1.75rem}
-    .kpi{background:var(--surface);border:1px solid var(--border);border-radius:var(--r-md);padding:1.2rem 1.3rem;position:relative;overflow:hidden;cursor:pointer;transition:var(--transition);box-shadow:var(--shadow-sm)}
+    .kpi-row{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:.85rem;margin-bottom:1.4rem;width:100%}
+    @media(max-width:1180px){.kpi-row{grid-template-columns:repeat(3,minmax(0,1fr))}}
+    @media(max-width:768px){.kpi-row{grid-template-columns:repeat(2,minmax(0,1fr))}}
+    @media(max-width:480px){.kpi-row{grid-template-columns:1fr}}
+    .kpi{background:var(--surface);border:1px solid var(--border);border-radius:var(--r-md);padding:1.1rem 1.2rem;position:relative;overflow:hidden;cursor:pointer;transition:var(--transition);box-shadow:var(--shadow-sm);min-width:0}
     .kpi::after{content:'';position:absolute;top:0;left:0;width:100%;height:4px;background:var(--border)}
     .kpi.c-gold::after{background:linear-gradient(90deg,var(--gold),var(--gold-light))}
     .kpi.c-green::after{background:var(--green)}
@@ -97,11 +101,11 @@
     .kpi.c-red::after{background:var(--red)}
     .kpi.c-blue::after{background:var(--blue)}
     .kpi:hover{transform:translateY(-3px);box-shadow:var(--shadow-md);border-color:var(--gold)}
-    .kpi-top{display:flex;justify-content:space-between;align-items:center;margin-bottom:.6rem}
-    .kpi-label{font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.6px;color:var(--text-2)}
-    .kpi-icon{font-size:1.3rem;opacity:.85}
-    .kpi-num{font-size:2.2rem;font-weight:800;line-height:1.1;letter-spacing:-1px;margin-bottom:.5rem}
-    .kpi-foot{display:flex;align-items:center;gap:.45rem;font-size:.75rem;color:var(--text-2)}
+    .kpi-top{display:flex;justify-content:space-between;align-items:center;margin-bottom:.55rem}
+    .kpi-label{font-size:.7rem;font-weight:700;text-transform:uppercase;letter-spacing:.5px;color:var(--text-2);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+    .kpi-icon{font-size:1.25rem;opacity:.85}
+    .kpi-num{font-size:2rem;font-weight:800;line-height:1.1;letter-spacing:-1px;margin-bottom:.45rem}
+    .kpi-foot{display:flex;align-items:center;gap:.45rem;font-size:.73rem;color:var(--text-2);flex-wrap:wrap}
     .chip{display:inline-flex;align-items:center;padding:.14rem .48rem;border-radius:4px;font-size:.72rem;font-weight:700}
     .chip.green{background:var(--green-bg);color:var(--green)}
     .chip.amber{background:var(--amber-bg);color:var(--amber)}
@@ -111,9 +115,9 @@
     [data-theme="dark"] .chip.gold{color:var(--gold-light)}
 
     /* ── Tabs ── */
-    .tab-nav{display:flex;align-items:flex-end;gap:.3rem;border-bottom:2px solid var(--border);margin-bottom:1.5rem;overflow-x:auto;scrollbar-width:none}
+    .tab-nav{display:flex;align-items:flex-end;gap:.3rem;border-bottom:2px solid var(--border);margin-bottom:1.4rem;overflow-x:auto;scrollbar-width:none;width:100%}
     .tab-nav::-webkit-scrollbar{display:none}
-    .tab-btn{display:flex;align-items:center;gap:.5rem;padding:.8rem 1.25rem;border:none;background:transparent;font-size:.85rem;font-weight:700;color:var(--text-2);cursor:pointer;position:relative;transition:var(--transition);border-radius:var(--r-sm) var(--r-sm) 0 0;white-space:nowrap;font-family:inherit}
+    .tab-btn{display:flex;align-items:center;gap:.5rem;padding:.75rem 1.15rem;border:none;background:transparent;font-size:.83rem;font-weight:700;color:var(--text-2);cursor:pointer;position:relative;transition:var(--transition);border-radius:var(--r-sm) var(--r-sm) 0 0;white-space:nowrap;font-family:inherit}
     .tab-btn:hover{color:var(--text);background:rgba(0,0,0,.025)}
     [data-theme="dark"] .tab-btn:hover{background:rgba(255,255,255,.03)}
     .tab-btn.active{color:var(--gold);background:var(--surface)}
@@ -122,27 +126,70 @@
     .tab-count{background:var(--border);color:var(--text-2);padding:.1rem .45rem;border-radius:999px;font-size:.68rem;font-weight:700}
     .tab-btn.active .tab-count{background:rgba(201,151,42,.2);color:var(--gold)}
     [data-theme="dark"] .tab-btn.active .tab-count{color:var(--gold-light)}
-    .tab-pane{display:none;animation:fadeUp .22s ease-out}
+    .tab-pane{display:none;animation:fadeUp .22s ease-out;width:100%}
     .tab-pane.active{display:block}
     @keyframes fadeUp{from{opacity:0;transform:translateY(5px)}to{opacity:1;transform:translateY(0)}}
 
     /* ── Quick Filter Chips ── */
-    .chip-row{display:flex;gap:.45rem;margin-bottom:1rem;overflow-x:auto;padding-bottom:.35rem;scrollbar-width:thin}
-    .qchip{padding:.38rem .8rem;border-radius:999px;font-size:.76rem;font-weight:700;cursor:pointer;border:1.5px solid var(--border);background:var(--surface);color:var(--text-2);transition:var(--transition);white-space:nowrap;user-select:none;font-family:inherit}
+    .chip-row{display:flex;flex-wrap:wrap;align-items:center;gap:.45rem;margin-bottom:.9rem;width:100%;overflow:visible;padding-bottom:0}
+    .qchip{padding:.38rem .82rem;border-radius:999px;font-size:.76rem;font-weight:700;cursor:pointer;border:1.5px solid var(--border);background:var(--surface);color:var(--text-2);transition:var(--transition);white-space:nowrap;user-select:none;font-family:inherit;display:inline-flex;align-items:center;gap:.35rem}
     .qchip:hover{border-color:var(--gold);color:var(--gold)}
     .qchip.active{background:var(--navy);color:#fff;border-color:var(--navy);box-shadow:0 2px 6px rgba(13,31,60,.25)}
     [data-theme="dark"] .qchip.active{background:var(--gold);color:#0d1f3c;border-color:var(--gold)}
+    .qchip.qchip-red{border-color:rgba(209,50,50,.45);color:var(--red);background:var(--red-bg)}
+    .qchip.qchip-red:hover{border-color:var(--red);background:rgba(209,50,50,.22)}
+    .qchip.qchip-red.active{background:linear-gradient(135deg,var(--red) 0%,#a81b1b 100%)!important;color:#fff!important;border-color:var(--red)!important;box-shadow:0 2px 8px rgba(209,50,50,.45)}
+    .qchip.qchip-green{border-color:rgba(13,158,110,.4);color:var(--green);background:var(--green-bg)}
+    .qchip.qchip-green:hover{border-color:var(--green);background:rgba(13,158,110,.22)}
+    .qchip.qchip-green.active{background:linear-gradient(135deg,var(--green) 0%,#096b4b 100%)!important;color:#fff!important;border-color:var(--green)!important;box-shadow:0 2px 8px rgba(13,158,110,.4)}
 
-    /* ── Filter Card ── */
-    .filter-card{background:var(--surface);border:1px solid var(--border);border-radius:var(--r-md);padding:1.2rem 1.4rem;margin-bottom:1.2rem;box-shadow:var(--shadow-sm);transition:background .22s,border-color .22s}
-    .filter-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:.9rem;align-items:end}
-    .filter-grid .span2{grid-column:span 2}
-    @media(max-width:640px){.filter-grid .span2{grid-column:span 1}}
-    .f-label{font-size:.7rem;font-weight:700;text-transform:uppercase;letter-spacing:.4px;color:var(--text-2);margin-bottom:.3rem;display:block}
-    .f-input,.f-select{width:100%;height:38px;padding:.42rem .75rem;border:1.5px solid var(--border);border-radius:var(--r-sm);background:var(--surface-2);color:var(--text);font-size:.83rem;font-family:inherit;transition:var(--transition);outline:none}
+    /* ── IPS Executive Command Bar ── */
+    .ips-command-bar{background:linear-gradient(135deg,#07172e 0%,#0d2346 60%,#132f5a 100%);border:1.5px solid var(--gold);border-radius:var(--r-md);padding:.95rem 1.35rem;margin-bottom:1.35rem;box-shadow:0 4px 18px rgba(0,0,0,.35);display:flex;justify-content:space-between;align-items:center;gap:1.1rem;flex-wrap:wrap;position:relative;overflow:hidden}
+    .ips-command-bar::before{content:'';position:absolute;top:0;left:0;bottom:0;width:5px;background:linear-gradient(180deg,#ff9933 0%,#ffffff 50%,#138808 100%)}
+    .ips-bar-left{display:flex;flex-direction:column;gap:.45rem;flex:1;min-width:300px}
+    .ips-badge{display:inline-flex;align-items:center;gap:.45rem;font-size:.68rem;font-weight:800;letter-spacing:.6px;color:var(--gold-light);text-transform:uppercase}
+    .pulse-dot{width:8px;height:8px;background:#ef4444;border-radius:50%;box-shadow:0 0 0 0 rgba(239,68,68,.7);animation:pulseAlert 2s infinite}
+    @keyframes pulseAlert{0%{transform:scale(.95);box-shadow:0 0 0 0 rgba(239,68,68,.7)}70%{transform:scale(1);box-shadow:0 0 0 7px rgba(239,68,68,0)}100%{transform:scale(.95);box-shadow:0 0 0 0 rgba(239,68,68,0)}}
+    .ips-highlights{display:flex;align-items:center;gap:1rem;flex-wrap:wrap}
+    .ips-hl-item{display:flex;flex-direction:column;gap:.12rem}
+    .ips-hl-label{font-size:.64rem;text-transform:uppercase;font-weight:700;color:#94a3b8;letter-spacing:.4px}
+    .ips-hl-val{font-size:.95rem;font-weight:800;color:#fff}
+    .ips-hl-val.text-green{color:#34d399}
+    .ips-hl-val.text-red{color:#f87171}
+    .ips-hl-val.text-gold{color:#fcd34d}
+    .ips-hl-sep{width:1px;height:24px;background:rgba(255,255,255,.15)}
+    .ips-bar-right{display:flex;align-items:center;gap:.55rem;flex-wrap:wrap}
+    .btn-red-action{background:linear-gradient(135deg,#dc2626 0%,#991b1b 100%);color:#fff!important;border:1px solid #ef4444!important;box-shadow:0 2px 8px rgba(220,38,38,.4);font-weight:800}
+    .btn-red-action:hover{background:linear-gradient(135deg,#ef4444 0%,#b91c1c 100%);transform:translateY(-1px);box-shadow:0 4px 12px rgba(220,38,38,.55)}
+
+    /* ── Filter Controls & Collapsible Card ── */
+    .filter-ctrl-strip{display:flex;align-items:center;justify-content:space-between;gap:.65rem;flex-wrap:wrap;margin-bottom:.85rem;padding:.55rem .85rem;background:var(--surface);border:1px solid var(--border);border-radius:var(--r-sm)}
+    .filter-ctrl-left{display:flex;align-items:center;gap:.6rem;flex-wrap:wrap;font-size:.8rem;color:var(--text-2)}
+    .filter-ctrl-right{display:flex;align-items:center;gap:.5rem;flex-wrap:wrap}
+    .btn-filter-toggle{padding:.32rem .7rem;border-radius:var(--r-sm);font-size:.76rem;font-weight:700;cursor:pointer;border:1.5px solid var(--border);background:var(--surface-2);color:var(--text);transition:var(--transition);font-family:inherit;display:inline-flex;align-items:center;gap:.35rem}
+    .btn-filter-toggle:hover,.btn-filter-toggle.active{border-color:var(--gold);color:var(--gold);background:var(--gold-pale)}
+    .filter-card{background:var(--surface);border:1px solid var(--border);border-radius:var(--r-md);padding:1.1rem 1.25rem;margin-bottom:1.2rem;box-shadow:var(--shadow-sm);transition:background .22s,border-color .22s;width:100%;max-width:100%;box-sizing:border-box;overflow:hidden}
+    .filter-card.collapsed{display:none}
+    .filter-grid{display:grid;grid-template-columns:minmax(200px,2fr) repeat(4,minmax(125px,1.1fr)) minmax(115px,auto);gap:.75rem;align-items:end;width:100%}
+    .filter-grid>div{min-width:0}
+    .filter-grid .span2{grid-column:auto}
+    @media(max-width:1200px){
+      .filter-grid{grid-template-columns:repeat(3,minmax(0,1fr))}
+      .filter-grid .span2{grid-column:span 3}
+    }
+    @media(max-width:768px){
+      .filter-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+      .filter-grid .span2{grid-column:span 2}
+    }
+    @media(max-width:520px){
+      .filter-grid{grid-template-columns:1fr}
+      .filter-grid .span2{grid-column:span 1}
+    }
+    .f-label{font-size:.7rem;font-weight:700;text-transform:uppercase;letter-spacing:.4px;color:var(--text-2);margin-bottom:.3rem;display:block;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+    .f-input,.f-select{width:100%;height:38px;padding:.42rem .75rem;border:1.5px solid var(--border);border-radius:var(--r-sm);background:var(--surface-2);color:var(--text);font-size:.83rem;font-family:inherit;transition:var(--transition);outline:none;box-sizing:border-box}
     .f-input:focus,.f-select:focus{border-color:var(--gold);box-shadow:0 0 0 3px rgba(201,151,42,.15)}
     select option{background:var(--surface);color:var(--text)}
-    .filter-bar{display:flex;align-items:center;justify-content:space-between;margin-top:.9rem;padding-top:.85rem;border-top:1px solid var(--border);font-size:.8rem;color:var(--text-2);flex-wrap:wrap;gap:.65rem}
+    .filter-bar{display:flex;align-items:center;justify-content:space-between;margin-top:.9rem;padding-top:.85rem;border-top:1px solid var(--border);font-size:.8rem;color:var(--text-2);flex-wrap:wrap;gap:.65rem;width:100%}
     .filter-bar strong{color:var(--text)}
     .filter-desc{color:var(--gold);font-weight:700}
 
@@ -281,6 +328,47 @@
     .section-head h2{font-size:1.3rem;font-weight:800;color:var(--text)}
     .section-head p{font-size:.83rem;color:var(--text-2);margin-top:.18rem}
     .section-controls{display:flex;gap:.6rem;flex-wrap:wrap;align-items:center}
+
+    /* ── CS2 Section & Metrics ── */
+    .cs2-container{background:var(--surface);border:1.5px solid var(--border);border-left:5px solid var(--red);border-radius:var(--r-md);padding:1.15rem 1.3rem;margin-bottom:1.25rem;box-shadow:var(--shadow-sm);transition:var(--transition);width:100%;box-sizing:border-box;overflow:hidden}
+    .cs2-container:hover{box-shadow:var(--shadow-md)}
+    .cs2-header{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:.8rem;margin-bottom:1rem;padding-bottom:.75rem;border-bottom:1px solid var(--border);width:100%}
+    .cs2-title-group{display:flex;align-items:center;gap:.75rem;flex-wrap:wrap}
+    .cs2-badge{background:var(--red);color:#fff;font-size:.72rem;font-weight:800;padding:.22rem .6rem;border-radius:5px;letter-spacing:.5px;display:inline-flex;align-items:center;gap:.35rem}
+    .cs2-title{font-size:1.12rem;font-weight:800;color:var(--text);line-height:1.3}
+    .cs2-sub{font-size:.76rem;color:var(--text-2);margin-top:.15rem}
+    .cs2-cards-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:.85rem;margin-bottom:.85rem;width:100%}
+    @media(max-width:1100px){.cs2-cards-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+    @media(max-width:580px){.cs2-cards-grid{grid-template-columns:1fr}}
+    .cs2-metric-card{background:var(--surface-2);border:1.5px solid var(--border);border-radius:var(--r-sm);padding:.95rem 1.1rem;cursor:pointer;transition:var(--transition);display:flex;flex-direction:column;justify-content:space-between;position:relative;min-width:0}
+    .cs2-metric-card:hover{transform:translateY(-2px);box-shadow:var(--shadow-md);border-color:var(--gold)}
+    .cs2-metric-card.active{border-color:var(--red);background:var(--red-bg);box-shadow:0 0 0 2px rgba(209,50,50,.25)}
+    .cs2-card-top{display:flex;justify-content:space-between;align-items:center;margin-bottom:.4rem}
+    .cs2-period-tag{font-size:.72rem;font-weight:800;letter-spacing:.4px;text-transform:uppercase}
+    .cs2-metric-num{font-size:1.95rem;font-weight:800;line-height:1.05;margin-bottom:.35rem}
+    .cs2-metric-desc{font-size:.73rem;color:var(--text-2);line-height:1.35}
+    .cs2-metric-btn{margin-top:.6rem;font-size:.72rem;font-weight:700;padding:.26rem .55rem;border-radius:4px;border:1px solid var(--border);background:var(--surface);color:var(--text);cursor:pointer;transition:var(--transition);width:100%;text-align:center;display:flex;align-items:center;justify-content:center;gap:.3rem}
+    .cs2-metric-card:hover .cs2-metric-btn,.cs2-metric-card.active .cs2-metric-btn{background:var(--navy);color:#fff;border-color:var(--navy)}
+    [data-theme="dark"] .cs2-metric-card:hover .cs2-metric-btn,[data-theme="dark"] .cs2-metric-card.active .cs2-metric-btn{background:var(--gold);color:#0d1f3c;border-color:var(--gold)}
+    .cs2-footer-row{display:flex;justify-content:space-between;align-items:center;font-size:.76rem;color:var(--text-2);flex-wrap:wrap;gap:.6rem;padding-top:.7rem;border-top:1px dashed var(--border);width:100%}
+    .cs2-unit-breakdown{display:none;margin-top:.85rem;padding-top:.85rem;border-top:1px solid var(--border);width:100%}
+    .cs2-unit-breakdown.open{display:block}
+
+    /* ── Date Filter Section ── */
+    .date-filter-panel{margin-top:.9rem;padding-top:.9rem;border-top:1px dashed var(--border);width:100%;box-sizing:border-box}
+    .date-filter-top{display:flex;align-items:center;justify-content:space-between;gap:.6rem;flex-wrap:wrap;margin-bottom:.65rem;width:100%}
+    .date-filter-title{font-size:.78rem;font-weight:800;color:var(--text);display:flex;align-items:center;gap:.45rem}
+    .date-presets{display:flex;align-items:center;gap:.35rem;flex-wrap:wrap}
+    .preset-label{font-size:.72rem;font-weight:700;color:var(--text-2)}
+    .preset-btn{padding:.22rem .55rem;border-radius:999px;font-size:.7rem;font-weight:700;cursor:pointer;border:1.2px solid var(--border);background:var(--surface-2);color:var(--text-2);transition:var(--transition);font-family:inherit}
+    .preset-btn:hover{border-color:var(--gold);color:var(--gold)}
+    .date-grid{display:grid;grid-template-columns:minmax(140px,1fr) minmax(140px,1fr) minmax(200px,1.4fr) minmax(170px,auto);gap:.75rem;align-items:end;width:100%}
+    .date-grid>div{min-width:0}
+    @media(max-width:980px){.date-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+    @media(max-width:560px){.date-grid{grid-template-columns:1fr}}
+    .date-filter-foot{margin-top:.6rem;display:flex;align-items:center;justify-content:space-between;font-size:.74rem;color:var(--text-3);flex-wrap:wrap;gap:.5rem;width:100%}
+    .undated-label{display:flex;align-items:center;gap:.35rem;cursor:pointer;user-select:none;color:var(--text-2)}
+    .active-date-badge{color:var(--gold);font-weight:700;font-size:.74rem;background:var(--gold-pale);padding:.15rem .5rem;border-radius:4px;border:1px solid rgba(201,151,42,.3)}
   </style>
 </head>
 <body>
@@ -314,7 +402,13 @@
         </div>
       </div>
       <div class="hdr-controls">
-        <button class="btn btn-gold" onclick="exportToCSV()">
+        <button class="btn btn-red-action" onclick="filterByCS2('all')" title="Directly inspect all 289 non-compliant personnel">
+          🚨 289 Defaulters
+        </button>
+        <button class="btn btn-gold" onclick="copyWhatsAppBriefing()" title="Copy pre-formatted review briefing to clipboard for WhatsApp/Meetings">
+          📋 Copy WhatsApp Brief
+        </button>
+        <button class="btn btn-outline" onclick="exportToCSV()" title="Export current table view to CSV">
           <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
           Export CSV
         </button>
@@ -340,6 +434,50 @@
   <!-- Main app -->
   <main class="app">
 
+    <!-- IPS Executive Command Bar -->
+    <section class="ips-command-bar">
+      <div class="ips-bar-left">
+        <div class="ips-badge"><span class="pulse-dot"></span> COMMAND EXECUTIVE BRIEFING &bull; ANNUAL AUDIT 2026</div>
+        <div class="ips-highlights">
+          <div class="ips-hl-item">
+            <span class="ips-hl-label">Total ATS Strength</span>
+            <span class="ips-hl-val">601 Personnel <small style="font-size:.7rem;color:#94a3b8">(27 Units)</small></span>
+          </div>
+          <div class="ips-hl-sep"></div>
+          <div class="ips-hl-item">
+            <span class="ips-hl-label">Target Compliant (3+ Hrs)</span>
+            <span class="ips-hl-val text-green" id="ipsCompliantVal">272 (45.3%)</span>
+          </div>
+          <div class="ips-hl-sep"></div>
+          <div class="ips-hl-item">
+            <span class="ips-hl-label">🚨 Total CS2 Defaulters</span>
+            <span class="ips-hl-val text-red" id="ipsDefaultersVal">289 (48.1%)</span>
+          </div>
+          <div class="ips-hl-sep"></div>
+          <div class="ips-hl-item">
+            <span class="ips-hl-label">🏆 #1 Ranked Unit</span>
+            <span class="ips-hl-val text-gold">C Sambhaji Nagar (93.9%)</span>
+          </div>
+          <div class="ips-hl-sep"></div>
+          <div class="ips-hl-item">
+            <span class="ips-hl-label">⚠️ Lowest Compliance</span>
+            <span class="ips-hl-val text-red">Akola (0%) &middot; ADM (5.7%)</span>
+          </div>
+        </div>
+      </div>
+      <div class="ips-bar-right">
+        <button type="button" class="btn btn-red-action" onclick="filterByCS2('all')" title="Filter to all 289 non-compliant personnel in 1 click">
+          🚨 View 289 Defaulters
+        </button>
+        <button type="button" class="btn btn-gold" onclick="copyWhatsAppBriefing()" title="Copy pre-formatted review briefing to clipboard for WhatsApp/Meetings">
+          📋 Copy WhatsApp Brief
+        </button>
+        <button type="button" class="btn btn-outline" onclick="exportDefaultersNoticeList()" title="Download CSV of non-compliant personnel for issuing notices">
+          📥 Defaulter Notice (CSV)
+        </button>
+      </div>
+    </section>
+
     <!-- KPI Row -->
     <section class="kpi-row">
       <div class="kpi c-gold" onclick="resetFilters()" title="View all personnel">
@@ -357,10 +495,10 @@
         <div class="kpi-num" id="kpiPartial" style="color:var(--amber)">30</div>
         <div class="kpi-foot"><span class="chip amber" id="kpiPartialPct">5.0%</span><span>Partial Hours Done</span></div>
       </div>
-      <div class="kpi c-red" onclick="filterByQuickStatus('nil')" title="View pending personnel">
-        <div class="kpi-top"><span class="kpi-label">Pending / Not Done</span><span class="kpi-icon">⚠️</span></div>
+      <div class="kpi c-red" onclick="filterByCS2('all')" title="CS2 - Training Not Done Analysis (Click to inspect)">
+        <div class="kpi-top"><span class="kpi-label">CS2: Training Not Done</span><span class="kpi-icon">⚠️</span></div>
         <div class="kpi-num" id="kpiNotDone" style="color:var(--red)">289</div>
-        <div class="kpi-foot"><span class="chip red" id="kpiNotDonePct">48.1%</span><span>Requires Follow-up</span></div>
+        <div class="kpi-foot"><span class="chip red" id="kpiNotDonePct">48.1%</span><span>15d · 30d · 3m Breakdown</span></div>
       </div>
       <div class="kpi c-blue" onclick="switchTab('tab-records')" title="View all course logs">
         <div class="kpi-top"><span class="kpi-label">Courses Logged</span><span class="kpi-icon">📚</span></div>
@@ -394,20 +532,163 @@
     <!-- TAB 1: RECORDS -->
     <div id="tab-records" class="tab-pane active">
 
-      <!-- Quick filter chips -->
-      <div class="chip-row">
-        <button class="qchip active" id="chip-all"         onclick="filterByChip('all')">All Records (454)</button>
-        <button class="qchip"        id="chip-completed"   onclick="filterByChip('completed')">✅ Completed 3+ Hours</button>
-        <button class="qchip"        id="chip-partial"     onclick="filterByChip('partial')">⏳ In-Progress / Partial</button>
-        <button class="qchip"        id="chip-nil"         onclick="filterByChip('nil')">⚠️ Pending / Not Done</button>
-        <button class="qchip"        id="chip-officers"    onclick="filterByChip('officers')">👮 Officers (PI / API / PSI)</button>
-        <button class="qchip"        id="chip-constabulary" onclick="filterByChip('constabulary')">🛡️ Constabulary (HC / PC)</button>
-        <button class="qchip"        id="chip-igot"        onclick="filterByChip('igot')">💻 iGOT Karmayogi</button>
-        <button class="qchip"        id="chip-mpa"         onclick="filterByChip('mpa')">🎓 MPA Nashik</button>
+      <!-- CS2 — Training Not Done Analysis Card -->
+      <section class="cs2-container" id="cs2Section">
+        <div class="cs2-header">
+          <div class="cs2-title-group">
+            <span class="cs2-badge">
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+              CS2 COMPLIANCE
+            </span>
+            <div>
+              <div class="cs2-title">CS2 &mdash; Total Count: Training Not Done Tracker</div>
+              <div class="cs2-sub">Training pending / incomplete count across Last 15 Days, 30 Days &amp; 3 Months (ATS Maharashtra Police)</div>
+            </div>
+          </div>
+          <div style="display:flex;align-items:center;gap:.55rem;flex-wrap:wrap">
+            <span class="chip red" style="font-size:.72rem;font-weight:700">Total Deficit: <strong id="cs2DeficitPct" style="margin-left:.25rem">48.1%</strong></span>
+            <button type="button" class="btn btn-outline" style="padding:.26rem .65rem;font-size:.74rem" onclick="toggleCS2UnitBreakdown()" id="cs2ToggleBreakdownBtn">
+              ▼ Show Unit Breakdown (27 Units)
+            </button>
+            <button type="button" class="btn btn-red-action" style="padding:.26rem .65rem;font-size:.74rem" onclick="exportDefaultersNoticeList()" title="Export 289 non-compliant personnel for issuing unit notices">
+              📥 Notice CSV
+            </button>
+          </div>
+        </div>
+
+        <!-- 4 Metric Action Cards -->
+        <div class="cs2-cards-grid">
+          <div class="cs2-metric-card" id="cs2-card-15d" onclick="filterByCS2('15d')" title="Click to view records pending in last 15 days">
+            <div>
+              <div class="cs2-card-top">
+                <span class="cs2-period-tag" style="color:var(--red)">🔴 Last 15 Days</span>
+                <span class="chip red" style="font-size:.66rem">Window: 15d</span>
+              </div>
+              <div class="cs2-metric-num" id="cs2Count15d" style="color:var(--red)">--</div>
+              <div class="cs2-metric-desc" id="cs2Desc15d">Personnel / logs with training pending in last 15 days window</div>
+            </div>
+            <button type="button" class="cs2-metric-btn">
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+              Filter 15 Days
+            </button>
+          </div>
+
+          <div class="cs2-metric-card" id="cs2-card-30d" onclick="filterByCS2('30d')" title="Click to view records pending in last 30 days">
+            <div>
+              <div class="cs2-card-top">
+                <span class="cs2-period-tag" style="color:var(--amber)">🟠 Last 30 Days</span>
+                <span class="chip amber" style="font-size:.66rem">Window: 30d</span>
+              </div>
+              <div class="cs2-metric-num" id="cs2Count30d" style="color:var(--amber)">--</div>
+              <div class="cs2-metric-desc" id="cs2Desc30d">Personnel / logs with training pending in last 30 days window</div>
+            </div>
+            <button type="button" class="cs2-metric-btn">
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+              Filter 30 Days
+            </button>
+          </div>
+
+          <div class="cs2-metric-card" id="cs2-card-3m" onclick="filterByCS2('3m')" title="Click to view records pending in last 3 months">
+            <div>
+              <div class="cs2-card-top">
+                <span class="cs2-period-tag" style="color:#d97706">🟡 Last 3 Months</span>
+                <span class="chip gold" style="font-size:.66rem">Window: 90d</span>
+              </div>
+              <div class="cs2-metric-num" id="cs2Count3m" style="color:#d97706">--</div>
+              <div class="cs2-metric-desc" id="cs2Desc3m">Personnel / logs with training pending in last 3 months (quarter)</div>
+            </div>
+            <button type="button" class="cs2-metric-btn">
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+              Filter 3 Months
+            </button>
+          </div>
+
+          <div class="cs2-metric-card" id="cs2-card-all" onclick="filterByCS2('all')" title="Click to view all 289 pending personnel">
+            <div>
+              <div class="cs2-card-top">
+                <span class="cs2-period-tag" style="color:var(--text)">⚠️ Total Force Pending</span>
+                <span class="chip red" style="font-size:.66rem">Baseline Audit</span>
+              </div>
+              <div class="cs2-metric-num" id="cs2CountTotal" style="color:var(--red)">289</div>
+              <div class="cs2-metric-desc">
+                Officers: <strong id="cs2OfficerNotDone">69</strong> &middot; Staff: <strong id="cs2StaffNotDone">220</strong>
+              </div>
+            </div>
+            <button type="button" class="cs2-metric-btn">
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+              View All 289 Pending
+            </button>
+          </div>
+        </div>
+
+        <!-- Collapsible Unit-Wise Not-Done Matrix -->
+        <div class="cs2-unit-breakdown" id="cs2UnitBreakdownPanel">
+          <div style="font-size:.82rem;font-weight:800;color:var(--text);margin-bottom:.55rem;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:.5rem">
+            <span>ATS Maharashtra &mdash; Unit-Wise Pending Training Distribution (All 27 Branches)</span>
+            <span style="font-size:.74rem;color:var(--text-3);font-weight:normal">Click 'Filter Unit' to inspect individual unit records</span>
+          </div>
+          <div class="tbl-scroll" style="max-height:280px;overflow-y:auto;border:1px solid var(--border);border-radius:var(--r-sm)">
+            <table class="dt" style="font-size:.78rem">
+              <thead>
+                <tr>
+                  <th>ATS Unit Name</th>
+                  <th style="text-align:center">Total Strength</th>
+                  <th style="text-align:center">Officers Pending</th>
+                  <th style="text-align:center">Staff Pending</th>
+                  <th style="text-align:center">Total Not Done</th>
+                  <th style="text-align:center">Compliance %</th>
+                  <th style="text-align:center">Action</th>
+                </tr>
+              </thead>
+              <tbody id="cs2UnitTableBody"></tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+
+      <!-- Executive Quick Action Pills (IPS Command Filter) -->
+      <div class="chip-row" style="margin-bottom:.8rem">
+        <button class="qchip active" id="chip-all"          onclick="filterByChip('all')">🛡️ All Personnel (601)</button>
+        <button class="qchip qchip-red" id="chip-nil"       onclick="filterByCS2('all')">🚨 289 Defaulters (Not Done)</button>
+        <button class="qchip"        id="chip-cs2-15d"      onclick="filterByCS2('15d')">🔴 Last 15 Days (15)</button>
+        <button class="qchip"        id="chip-cs2-30d"      onclick="filterByCS2('30d')">🟠 Last 30 Days (246)</button>
+        <button class="qchip qchip-green" id="chip-completed" onclick="filterByChip('completed')">✅ 3+ Hrs Completed (272)</button>
+        <button class="qchip"        id="chip-partial"      onclick="filterByChip('partial')">⏳ In-Progress (30)</button>
+        <button class="qchip"        id="chip-officers_pending" onclick="filterByTier('officers_pending')">👮 Officers Pending (71)</button>
+        <button class="qchip"        id="chip-staff_pending" onclick="filterByTier('staff_pending')">🛡️ Staff Pending (218)</button>
+        <button class="qchip"        id="chip-top"          onclick="filterByTier('top')">🏆 Top Units (≥75%)</button>
+        <button class="qchip"        id="chip-critical"     onclick="filterByTier('critical')">⚠️ Lagging Units (&lt;40%)</button>
       </div>
 
-      <!-- Filter toolbar -->
-      <div class="filter-card">
+      <!-- Executive Filter Control & Status Bar -->
+      <div class="filter-ctrl-strip">
+        <div class="filter-ctrl-left">
+          <span>Showing <strong id="visibleCount">0</strong> of <strong id="totalCount">0</strong> records</span>
+          <span id="filterDescription" class="filter-desc"></span>
+        </div>
+        <div class="filter-ctrl-right">
+          <div style="display:flex;align-items:center;gap:.4rem;font-size:.76rem;color:var(--text-2)">
+            <span>Rows:</span>
+            <select id="pageSizeSelect" class="f-select" style="width:auto;height:30px;padding:.15rem .5rem;font-size:.76rem" onchange="changePageSize()">
+              <option value="15">15</option>
+              <option value="25" selected>25</option>
+              <option value="50">50</option>
+              <option value="100">100</option>
+              <option value="ALL">All</option>
+            </select>
+          </div>
+          <button type="button" class="btn-filter-toggle" onclick="toggleAdvancedFilters()" id="btnToggleAdvancedFilters">
+            <span>⚙️ Detailed Search &amp; Custom Dates</span>
+            <span id="advFilterStateIcon">▲</span>
+          </button>
+          <button type="button" class="btn btn-outline" onclick="resetFilters()" style="padding:.26rem .65rem;font-size:.74rem">
+            🔄 Reset
+          </button>
+        </div>
+      </div>
+
+      <!-- Collapsible Detailed Filter Toolbar -->
+      <div class="filter-card" id="advancedFilterCard">
         <div class="filter-grid">
           <div class="span2">
             <label class="f-label" for="searchInput">🔍 Search Officer, Course, Badge No. or Keyword</label>
@@ -438,23 +719,62 @@
             </select>
           </div>
           <div style="display:flex;align-items:flex-end">
-            <button class="btn btn-outline" onclick="resetFilters()" style="height:38px;width:100%">🔄 Reset Filters</button>
+            <button class="btn btn-outline" onclick="resetFilters()" style="height:38px;width:100%">🔄 Reset All</button>
           </div>
         </div>
-        <div class="filter-bar">
-          <div>
-            Showing <strong id="visibleCount">0</strong> of <strong id="totalCount">0</strong> training records
-            <span id="filterDescription" class="filter-desc"></span>
+
+        <!-- Date Filter & Custom Range Section -->
+        <div class="date-filter-panel">
+          <div class="date-filter-top">
+            <div class="date-filter-title">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+              <span>Date Range Filter &amp; Timeframe Selection</span>
+              <span class="chip gold" style="font-size:.66rem">Custom Dates &middot; Data Dal Ke Dekhein</span>
+            </div>
+            <div class="date-presets">
+              <span class="preset-label">Quick Presets:</span>
+              <button type="button" class="preset-btn" onclick="setDatePreset(15)">⚡ Last 15 Days</button>
+              <button type="button" class="preset-btn" onclick="setDatePreset(30)">⚡ Last 30 Days</button>
+              <button type="button" class="preset-btn" onclick="setDatePreset(90)">⚡ Last 3 Months</button>
+              <button type="button" class="preset-btn" onclick="setDateExactPreset('2026-10-01','2026-10-31','October 2026')">⚡ October 2026</button>
+              <button type="button" class="preset-btn" onclick="setDateExactPreset('2026-05-01','2026-05-31','May 2026')">⚡ May 2026</button>
+              <button type="button" class="preset-btn" onclick="clearDateFilter()">⚡ All Dates</button>
+            </div>
           </div>
-          <div style="display:flex;align-items:center;gap:.5rem;font-size:.8rem;color:var(--text-2)">
-            Rows per page:
-            <select id="pageSizeSelect" class="f-select" style="width:auto;height:34px;padding:.28rem .6rem" onchange="changePageSize()">
-              <option value="15">15</option>
-              <option value="25" selected>25</option>
-              <option value="50">50</option>
-              <option value="100">100</option>
-              <option value="ALL">All</option>
-            </select>
+          <div class="filter-grid date-grid">
+            <div>
+              <label class="f-label" for="filterDateFrom">📅 From Date (Start)</label>
+              <input type="date" id="filterDateFrom" class="f-input" onchange="applyCustomDateFilter()" oninput="applyCustomDateFilter()" title="Select or type start date (YYYY-MM-DD)">
+            </div>
+            <div>
+              <label class="f-label" for="filterDateTo">📅 To Date (End)</label>
+              <input type="date" id="filterDateTo" class="f-input" onchange="applyCustomDateFilter()" oninput="applyCustomDateFilter()" title="Select or type end date (YYYY-MM-DD)">
+            </div>
+            <div>
+              <label class="f-label" for="filterStatus">📊 Training Status Filter</label>
+              <select id="filterStatus" class="f-select" onchange="applyFilters()">
+                <option value="ALL">All Statuses (Done + Pending)</option>
+                <option value="nil">⚠️ Training Not Done / Pending Only (NIL)</option>
+                <option value="completed">✅ Completed 3+ Hours Only</option>
+                <option value="partial">⏳ In-Progress / Partial Only</option>
+              </select>
+            </div>
+            <div style="display:flex;gap:.5rem;align-items:flex-end">
+              <button type="button" class="btn btn-gold" onclick="applyCustomDateFilter()" style="height:38px;flex:1" title="Apply the selected date range">
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+                Apply Dates
+              </button>
+              <button class="btn btn-outline" onclick="clearDateFilter()" style="height:38px;padding:.4rem .7rem" title="Clear date range">
+                ✕ Clear
+              </button>
+            </div>
+          </div>
+          <div class="date-filter-foot">
+            <label class="undated-label">
+              <input type="checkbox" id="includeUndatedPending" checked onchange="applyFilters()" style="accent-color:var(--gold)">
+              Include baseline pending personnel without specific log date in Not-Done filter
+            </label>
+            <span id="dateFilterActiveIndicator" class="active-date-badge" style="display:none"></span>
           </div>
         </div>
       </div>
@@ -986,6 +1306,7 @@
     updateThemeUI(saved);
     initFilters();
     renderKPIs();
+    renderCS2Metrics();
     applyFilters();
     renderUnitsGrid();
     renderCharts();
@@ -1043,6 +1364,145 @@
     return 'pc';
   }
 
+  // ── Helper: Record Status Detection ──
+  function isRecordNotDone(r) {
+    if (!r) return false;
+    const course = (r.course || '').toUpperCase();
+    const cert = (r.certificate || '').toLowerCase();
+    const dur = (r.duration || '').trim();
+    if (course.includes('NIL') || course.includes('NOT DONE') || course.includes('PENDING') || course.includes('NOT COMPLETED') || course === '-') return true;
+    if (cert === 'no' && (dur === '0' || dur === '-' || dur === '')) return true;
+    return false;
+  }
+
+  function isRecordPartial(r) {
+    if (isRecordNotDone(r)) return false;
+    const cert = (r.certificate || '').toLowerCase();
+    return cert === 'no';
+  }
+
+  function isRecordCompleted(r) {
+    if (isRecordNotDone(r) || isRecordPartial(r)) return false;
+    return true;
+  }
+
+  // ── Date Parsing Helpers ──
+  function getAnchorDate() {
+    const now = new Date();
+    if (now.getFullYear() >= 2026) return now;
+    return new Date(2026, 10, 17);
+  }
+
+  function parseSingleDate(s) {
+    if (!s) return null;
+    s = s.trim();
+    const mMatch = s.match(/^(January|February|March|April|May|June|July|August|September|October|November|December)\s+(\d{4})$/i);
+    if (mMatch) {
+      const months = {january:0,february:1,march:2,april:3,may:4,june:5,july:6,august:7,september:8,october:9,november:10,december:11};
+      const m = months[mMatch[1].toLowerCase()];
+      const y = parseInt(mMatch[2], 10);
+      return new Date(y, m, 15);
+    }
+    const dmy = s.match(/^(\d{1,2})[\/\-\.](\d{1,2})[\/\-\.](\d{4})$/);
+    if (dmy) {
+      const d = parseInt(dmy[1], 10);
+      const m = parseInt(dmy[2], 10) - 1;
+      const y = parseInt(dmy[3], 10);
+      return new Date(y, m, d);
+    }
+    const ymd = s.match(/^(\d{4})[\/\-](\d{1,2})[\/\-](\d{1,2})$/);
+    if (ymd) {
+      const y = parseInt(ymd[1], 10);
+      const m = parseInt(ymd[2], 10) - 1;
+      const d = parseInt(ymd[3], 10);
+      return new Date(y, m, d);
+    }
+    const d = new Date(s);
+    return isNaN(d.getTime()) ? null : d;
+  }
+
+  function parseDateRange(str) {
+    if (!str) return null;
+    const s = str.trim();
+    if (s === '-' || s.toUpperCase() === 'NIL') return null;
+
+    if (s.toLowerCase().includes(' to ')) {
+      const parts = s.split(/\s+to\s+/i);
+      const d1 = parseSingleDate(parts[0]);
+      const d2 = parseSingleDate(parts[1]);
+      if (d1 && d2) {
+        return {
+          start: new Date(d1.getFullYear(), d1.getMonth(), d1.getDate(), 0, 0, 0),
+          end: new Date(d2.getFullYear(), d2.getMonth(), d2.getDate(), 23, 59, 59)
+        };
+      }
+      if (d1) return { start: new Date(d1.getFullYear(), d1.getMonth(), d1.getDate(), 0, 0, 0), end: new Date(d1.getFullYear(), d1.getMonth(), d1.getDate(), 23, 59, 59) };
+      if (d2) return { start: new Date(d2.getFullYear(), d2.getMonth(), d2.getDate(), 0, 0, 0), end: new Date(d2.getFullYear(), d2.getMonth(), d2.getDate(), 23, 59, 59) };
+    }
+
+    const mMatch = s.match(/^(January|February|March|April|May|June|July|August|September|October|November|December)\s+(\d{4})$/i);
+    if (mMatch) {
+      const months = {january:0,february:1,march:2,april:3,may:4,june:5,july:6,august:7,september:8,october:9,november:10,december:11};
+      const m = months[mMatch[1].toLowerCase()];
+      const y = parseInt(mMatch[2], 10);
+      return {
+        start: new Date(y, m, 1, 0, 0, 0),
+        end: new Date(y, m + 1, 0, 23, 59, 59)
+      };
+    }
+
+    const single = parseSingleDate(s);
+    if (single) {
+      return {
+        start: new Date(single.getFullYear(), single.getMonth(), single.getDate(), 0, 0, 0),
+        end: new Date(single.getFullYear(), single.getMonth(), single.getDate(), 23, 59, 59)
+      };
+    }
+    return null;
+  }
+
+  function matchesDateRange(recordDateStr, fromDateObj, toDateObj, isNotDoneRecord, includeUndated, unitName) {
+    if (!fromDateObj && !toDateObj) return true;
+    const rng = parseDateRange(recordDateStr);
+    if (rng) {
+      if (fromDateObj && rng.end < fromDateObj) return false;
+      if (toDateObj && rng.start > toDateObj) return false;
+      return true;
+    }
+    if (!includeUndated) return false;
+    const units15d = ['Technical (T.S)', 'Technical', 'Technical Cell', 'Training & CI CELL Pune'];
+    const olderUnits = ['C SAMBHAJI NAGAR', 'KALACHOWKY UNIT', 'SOLAPUR UNIT', 'akola unite'];
+    const u = (unitName || '').toLowerCase();
+    let uStart, uEnd;
+    if (units15d.some(x => u.includes(x.toLowerCase()))) {
+      uStart = new Date(2026, 10, 1);
+      uEnd = new Date(2026, 10, 30);
+    } else if (olderUnits.some(x => u.includes(x.toLowerCase()))) {
+      uStart = new Date(2026, 4, 1);
+      uEnd = new Date(2026, 6, 31);
+    } else {
+      uStart = new Date(2026, 9, 1);
+      uEnd = new Date(2026, 9, 31);
+    }
+    if (fromDateObj && uEnd < fromDateObj) return false;
+    if (toDateObj && uStart > toDateObj) return false;
+    return true;
+  }
+
+  function formatDateInput(d) {
+    const y = d.getFullYear();
+    const m = String(d.getMonth() + 1).padStart(2, '0');
+    const day = String(d.getDate()).padStart(2, '0');
+    return `${y}-${m}-${day}`;
+  }
+
+  function formatDateDisplay(dStr) {
+    if (!dStr) return '';
+    const d = parseSingleDate(dStr);
+    if (!d) return dStr;
+    return d.toLocaleDateString('en-IN', { day:'2-digit', month:'short', year:'numeric' });
+  }
+
   // ── KPIs ──
   function renderKPIs() {
     const totStrength = currentData.units.reduce((a,u) => a + (u.total_strength||0), 0);
@@ -1061,6 +1521,305 @@
       document.getElementById('kpiNotDonePct').textContent = ((totNotDone/totStrength)*100).toFixed(1) + '%';
     }
     document.getElementById('tabRecordCount').textContent = totLogs;
+
+    // Keep IPS Command Bar dynamically updated
+    const ipsComp = document.getElementById('ipsCompliantVal');
+    if (ipsComp) ipsComp.textContent = `${totCompleted.toLocaleString()} (${totStrength ? ((totCompleted/totStrength)*100).toFixed(1) : 0}%)`;
+    const ipsDef = document.getElementById('ipsDefaultersVal');
+    if (ipsDef) ipsDef.textContent = `${totNotDone.toLocaleString()} (${totStrength ? ((totNotDone/totStrength)*100).toFixed(1) : 0}%)`;
+
+    renderCS2Metrics();
+  }
+
+  // ── CS2 Tracker Metrics & Calculations ──
+  function renderCS2Metrics() {
+    const totNotDonePersonnel = currentData.units.reduce((a,u) => a + (u.total_not_done||0), 0);
+    const totStrength = currentData.units.reduce((a,u) => a + (u.total_strength||0), 0);
+    const totOfficersNotDone = currentData.units.reduce((a,u) => a + (u.officers && u.officers.not_done || 0), 0);
+    const totStaffNotDone = currentData.units.reduce((a,u) => a + (u.constabulary && u.constabulary.not_done || 0), 0);
+
+    const units15d = ['Technical (T.S)', 'Technical', 'Technical Cell', 'Training & CI CELL Pune'];
+    const olderUnits = ['C SAMBHAJI NAGAR', 'KALACHOWKY UNIT', 'SOLAPUR UNIT', 'akola unite'];
+
+    function isUnitMatch(unitName, list) {
+      const u = (unitName||'').toLowerCase();
+      return list.some(x => u.includes(x.toLowerCase()));
+    }
+
+    let count15Personnel = 0;
+    let count30Personnel = 0;
+    currentData.units.forEach(u => {
+      if (isUnitMatch(u.unit, units15d)) count15Personnel += (u.total_not_done || 0);
+      if (!isUnitMatch(u.unit, olderUnits)) count30Personnel += (u.total_not_done || 0);
+    });
+
+    let logs15 = 0, logs30 = 0, logs90 = 0;
+    currentData.records.forEach(r => {
+      if (isRecordNotDone(r)) {
+        logs90++;
+        if (isUnitMatch(r.unit, units15d)) logs15++;
+        if (!isUnitMatch(r.unit, olderUnits)) logs30++;
+      }
+    });
+
+    const el15 = document.getElementById('cs2Count15d');
+    const el30 = document.getElementById('cs2Count30d');
+    const el3m = document.getElementById('cs2Count3m');
+    const elTot = document.getElementById('cs2CountTotal');
+    const elOff = document.getElementById('cs2OfficerNotDone');
+    const elStf = document.getElementById('cs2StaffNotDone');
+    const elDef = document.getElementById('cs2DeficitPct');
+    const desc15 = document.getElementById('cs2Desc15d');
+    const desc30 = document.getElementById('cs2Desc30d');
+    const desc3m = document.getElementById('cs2Desc3m');
+
+    if (el15) el15.textContent = count15Personnel;
+    if (el30) el30.textContent = count30Personnel;
+    if (el3m) el3m.textContent = totNotDonePersonnel;
+    if (elTot) elTot.textContent = totNotDonePersonnel;
+    if (elOff) elOff.textContent = totOfficersNotDone;
+    if (elStf) elStf.textContent = totStaffNotDone;
+    if (desc15) desc15.innerHTML = `<strong>${count15Personnel} Personnel</strong> (${logs15} audit logs) pending in last 15 days`;
+    if (desc30) desc30.innerHTML = `<strong>${count30Personnel} Personnel</strong> (${logs30} audit logs) pending in last 30 days`;
+    if (desc3m) desc3m.innerHTML = `<strong>${totNotDonePersonnel} Personnel</strong> (${logs90} audit logs) pending in last 3 months`;
+    if (elDef && totStrength > 0) {
+      elDef.textContent = ((totNotDonePersonnel / totStrength) * 100).toFixed(1) + '%';
+    }
+
+    renderCS2UnitBreakdown();
+  }
+
+  function renderCS2UnitBreakdown() {
+    const tbody = document.getElementById('cs2UnitTableBody');
+    if (!tbody) return;
+    const sorted = [...currentData.units].sort((a,b) => (b.total_not_done||0) - (a.total_not_done||0));
+
+    // Sort by compliance to highlight top performers
+    const byComp = [...currentData.units].sort((a,b) => (b.compliance_pct||0) - (a.compliance_pct||0));
+    const goldUnit = byComp[0] ? byComp[0].unit : '';
+    const silverUnit = byComp[1] ? byComp[1].unit : '';
+    const bronzeUnit = byComp[2] ? byComp[2].unit : '';
+
+    tbody.innerHTML = sorted.map((u, i) => {
+      const offPending = u.officers ? u.officers.not_done || 0 : 0;
+      const stfPending = u.constabulary ? u.constabulary.not_done || 0 : 0;
+      const totPending = u.total_not_done || 0;
+      const compPct = u.compliance_pct ? u.compliance_pct.toFixed(1) + '%' : '0.0%';
+      const badgeCls = u.compliance_pct >= 70 ? 'comp-high' : u.compliance_pct >= 40 ? 'comp-mid' : 'comp-low';
+
+      let unitLabel = escapeHTML(u.unit);
+      if (u.unit === goldUnit) {
+        unitLabel = `🥇 <strong>${escapeHTML(u.unit)}</strong> <span class="chip" style="font-size:.62rem;background:var(--gold-pale);color:var(--gold);margin-left:4px">Top #1</span>`;
+      } else if (u.unit === silverUnit) {
+        unitLabel = `🥈 <strong>${escapeHTML(u.unit)}</strong>`;
+      } else if (u.unit === bronzeUnit) {
+        unitLabel = `🥉 <strong>${escapeHTML(u.unit)}</strong>`;
+      } else if (u.compliance_pct < 40) {
+        unitLabel = `🚨 <strong>${escapeHTML(u.unit)}</strong> <span class="chip red" style="font-size:.62rem;margin-left:4px">Lagging</span>`;
+      }
+
+      return `<tr>
+        <td style="font-weight:600;color:var(--text)">${unitLabel}</td>
+        <td style="text-align:center;font-weight:700;color:var(--text-2)">${u.total_strength||0}</td>
+        <td style="text-align:center;color:var(--red);font-weight:700">${offPending}</td>
+        <td style="text-align:center;color:var(--red);font-weight:700">${stfPending}</td>
+        <td style="text-align:center;font-weight:800;color:var(--red);background:var(--red-bg)">${totPending}</td>
+        <td style="text-align:center"><span class="comp-badge ${badgeCls}">${compPct}</span></td>
+        <td style="text-align:center">
+          <button class="btn btn-outline" style="padding:.2rem .55rem;font-size:.72rem" onclick="filterToUnitAndStatus('${escapeJS(u.unit)}','nil')">🚨 Filter Defaulters</button>
+        </td>
+      </tr>`;
+    }).join('');
+  }
+
+  function toggleCS2UnitBreakdown() {
+    const p = document.getElementById('cs2UnitBreakdownPanel');
+    const b = document.getElementById('cs2ToggleBreakdownBtn');
+    if (!p) return;
+    const isOpen = p.classList.toggle('open');
+    if (b) b.textContent = isOpen ? '▲ Hide Unit Breakdown' : '▼ Show Unit Breakdown (27 Units)';
+  }
+
+  function filterToUnitAndStatus(unitName, status) {
+    switchTab('tab-records');
+    resetFilters();
+    const uSel = document.getElementById('filterUnit');
+    if (uSel) uSel.value = unitName;
+    if (status) {
+      const sSel = document.getElementById('filterStatus');
+      if (sSel) sSel.value = status;
+    }
+    applyFilters();
+    showToast(`Filtered to Unit: ${unitName} (${status === 'nil' ? 'Pending Only' : 'All'})`);
+    const target = document.getElementById('officersTable');
+    if (target && typeof target.scrollIntoView === 'function') target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  }
+
+  function filterByCS2(period) {
+    switchTab('tab-records');
+    const anchor = getAnchorDate();
+    let days = 0;
+    let label = '';
+    if (period === '15d') { days = 15; label = 'Last 15 Days'; }
+    else if (period === '30d') { days = 30; label = 'Last 30 Days'; }
+    else if (period === '3m') { days = 90; label = 'Last 3 Months'; }
+    else { days = 0; label = 'All Pending Defaulters'; }
+
+    const stSel = document.getElementById('filterStatus');
+    if (stSel) stSel.value = 'nil';
+
+    const fromEl = document.getElementById('filterDateFrom');
+    const toEl = document.getElementById('filterDateTo');
+    if (days > 0) {
+      const from = new Date(anchor.getTime() - days * 86400000);
+      if (fromEl) fromEl.value = formatDateInput(from);
+      if (toEl) toEl.value = formatDateInput(anchor);
+    } else {
+      if (fromEl) fromEl.value = '';
+      if (toEl) toEl.value = '';
+    }
+
+    currentActiveChip = (period === 'all' ? 'nil' : 'cs2-' + period);
+    document.querySelectorAll('.qchip').forEach(c => c.classList.remove('active'));
+    const ch = document.getElementById('chip-cs2-' + period) || document.getElementById('chip-nil');
+    if (ch) ch.classList.add('active');
+
+    document.querySelectorAll('.cs2-metric-card').forEach(c => c.classList.remove('active'));
+    const cd = document.getElementById('cs2-card-' + period);
+    if (cd) cd.classList.add('active');
+
+    applyFilters();
+    showToast(`CS2 Filter Active: Training Not Done — ${label}`);
+  }
+
+  // ── Date Filter Handlers (Robust & Interactive) ──
+  function applyCustomDateFilter() {
+    const fromEl = document.getElementById('filterDateFrom');
+    const toEl = document.getElementById('filterDateTo');
+    let fromVal = fromEl ? fromEl.value : '';
+    let toVal = toEl ? toEl.value : '';
+
+    // If both dates provided and from > to, auto-swap them
+    if (fromVal && toVal && fromVal > toVal) {
+      const tmp = fromVal;
+      fromVal = toVal;
+      toVal = tmp;
+      if (fromEl) fromEl.value = fromVal;
+      if (toEl) toEl.value = toVal;
+      showToast('⚠️ Start date was after end date — dates were swapped automatically.');
+    }
+
+    // Deactivate quick chips so custom dates take priority
+    if (fromVal || toVal) {
+      if (currentActiveChip.startsWith('cs2-') || currentActiveChip === 'top' || currentActiveChip === 'critical') {
+        currentActiveChip = 'custom-date';
+        document.querySelectorAll('.qchip').forEach(c => c.classList.remove('active'));
+        document.querySelectorAll('.cs2-metric-card').forEach(c => c.classList.remove('active'));
+      }
+    }
+
+    applyFilters();
+
+    const count = filteredRecords.length;
+    if (fromVal && toVal) {
+      showToast(`📅 Filter Applied: ${formatDateDisplay(fromVal)} to ${formatDateDisplay(toVal)} (${count} records found)`);
+    } else if (fromVal) {
+      showToast(`📅 Filter Applied: From ${formatDateDisplay(fromVal)} onwards (${count} records found)`);
+    } else if (toVal) {
+      showToast(`📅 Filter Applied: Up to ${formatDateDisplay(toVal)} (${count} records found)`);
+    } else {
+      showToast(`📅 All Dates: ${count} records found`);
+    }
+  }
+
+  function setDatePreset(days) {
+    if (days === 'all') {
+      clearDateFilter();
+      return;
+    }
+    const anchor = getAnchorDate();
+    const from = new Date(anchor.getTime() - days * 86400000);
+    const fromEl = document.getElementById('filterDateFrom');
+    const toEl = document.getElementById('filterDateTo');
+    if (fromEl) fromEl.value = formatDateInput(from);
+    if (toEl) toEl.value = formatDateInput(anchor);
+
+    // Switch to custom date mode
+    currentActiveChip = 'custom-date';
+    document.querySelectorAll('.qchip').forEach(c => c.classList.remove('active'));
+    document.querySelectorAll('.cs2-metric-card').forEach(c => c.classList.remove('active'));
+
+    applyFilters();
+    showToast(`📅 Date range set to Last ${days} Days (${formatDateDisplay(formatDateInput(from))} to ${formatDateDisplay(formatDateInput(anchor))})`);
+  }
+
+  function setDateExactPreset(fromStr, toStr, label) {
+    const fromEl = document.getElementById('filterDateFrom');
+    const toEl = document.getElementById('filterDateTo');
+    if (fromEl) fromEl.value = fromStr;
+    if (toEl) toEl.value = toStr;
+
+    currentActiveChip = 'custom-date';
+    document.querySelectorAll('.qchip').forEach(c => c.classList.remove('active'));
+    document.querySelectorAll('.cs2-metric-card').forEach(c => c.classList.remove('active'));
+
+    applyFilters();
+    showToast(`📅 Preset Applied: ${label || (fromStr + ' to ' + toStr)} (${filteredRecords.length} records)`);
+  }
+
+  function clearDateFilter() {
+    const fromEl = document.getElementById('filterDateFrom');
+    const toEl = document.getElementById('filterDateTo');
+    if (fromEl) fromEl.value = '';
+    if (toEl) toEl.value = '';
+
+    currentActiveChip = 'all';
+    document.querySelectorAll('.qchip').forEach(c => c.classList.remove('active'));
+    const ch = document.getElementById('chip-all');
+    if (ch) ch.classList.add('active');
+    document.querySelectorAll('.cs2-metric-card').forEach(c => c.classList.remove('active'));
+
+    applyFilters();
+    showToast('📅 Date filter cleared (Showing All Dates)');
+  }
+
+  // ── IPS Executive Toolbar & Tiers ──
+  function toggleAdvancedFilters() {
+    const card = document.getElementById('advancedFilterCard');
+    const icon = document.getElementById('advFilterStateIcon') || document.getElementById('advFilterToggleIcon');
+    const btn = document.getElementById('btnToggleAdvancedFilters');
+    if (!card) return;
+    const isNowCollapsed = card.classList.toggle('collapsed');
+    if (icon) icon.textContent = isNowCollapsed ? '▼' : '▲';
+    if (btn) btn.classList.toggle('active', !isNowCollapsed);
+  }
+
+  function filterByTier(tier) {
+    switchTab('tab-records');
+    currentActiveChip = tier;
+    document.querySelectorAll('.qchip').forEach(c => c.classList.remove('active'));
+    document.querySelectorAll('.cs2-metric-card').forEach(c => c.classList.remove('active'));
+
+    const chipEl = document.getElementById('chip-' + tier);
+    if (chipEl) chipEl.classList.add('active');
+
+    // Reset standard dropdowns to avoid conflicts
+    ['filterUnit','filterRank','filterPlatform','filterSkill'].forEach(id => {
+      const d = document.getElementById(id); if (d) d.value = 'ALL';
+    });
+    const st = document.getElementById('filterStatus'); if (st) st.value = 'ALL';
+    const f = document.getElementById('filterDateFrom'); if (f) f.value = '';
+    const t = document.getElementById('filterDateTo'); if (t) t.value = '';
+
+    applyFilters();
+
+    const labels = {
+      'officers_pending': '👮 71 Officers with Training Pending',
+      'staff_pending': '🛡️ 218 Constabulary / Staff with Training Pending',
+      'top': '🏆 High Performing Units (≥75% Compliance)',
+      'critical': '⚠️ Lagging Defaulter Units (<40% Compliance)'
+    };
+    showToast(labels[tier] || `Filtered by ${tier}`);
   }
 
   // ── Filter dropdowns ──
@@ -1092,38 +1851,40 @@
     document.querySelectorAll('.qchip').forEach(c => c.classList.remove('active'));
     const el = document.getElementById('chip-' + type);
     if (el) el.classList.add('active');
-    document.getElementById('searchInput').value = '';
-    searchQuery = '';
-    ['filterUnit','filterRank','filterPlatform','filterSkill'].forEach(id => document.getElementById(id).value = 'ALL');
-    if (type === 'all') {
-      filteredRecords = [...currentData.records];
-    } else if (type === 'completed') {
-      filteredRecords = currentData.records.filter(r => r.course && !r.course.toUpperCase().includes('NIL') && !r.course.includes('Not Done') && !(r.certificate && r.certificate.toLowerCase() === 'no'));
-    } else if (type === 'partial') {
-      filteredRecords = currentData.records.filter(r => r.certificate && r.certificate.toLowerCase() === 'no' && r.course && !r.course.toUpperCase().includes('NIL'));
-    } else if (type === 'nil') {
-      filteredRecords = currentData.records.filter(r => r.course && (r.course.toUpperCase().includes('NIL') || r.course.includes('Not Done') || r.course.includes('Pending')));
-    } else if (type === 'officers') {
-      filteredRecords = currentData.records.filter(r => ['PI','API','PSI'].includes(normalizeRank(r.rank)));
-    } else if (type === 'constabulary') {
-      filteredRecords = currentData.records.filter(r => ['HC','PC','ASI'].includes(normalizeRank(r.rank)));
-    } else if (type === 'igot') {
-      filteredRecords = currentData.records.filter(r => normalizePlatform(r.platform).includes('iGOT'));
-    } else if (type === 'mpa') {
-      filteredRecords = currentData.records.filter(r => normalizePlatform(r.platform).includes('MPA'));
+
+    if (!type.startsWith('cs2-')) {
+      document.querySelectorAll('.cs2-metric-card').forEach(c => c.classList.remove('active'));
     }
-    currentPage = 1;
-    sortRecordsInternal();
-    renderTable();
-    renderPagination();
-    updateFilterStats();
+
+    if (type === 'all') {
+      ['filterUnit','filterRank','filterPlatform','filterSkill'].forEach(id => {
+        const d = document.getElementById(id); if (d) d.value = 'ALL';
+      });
+      const st = document.getElementById('filterStatus'); if (st) st.value = 'ALL';
+      const f = document.getElementById('filterDateFrom'); if (f) f.value = '';
+      const t = document.getElementById('filterDateTo'); if (t) t.value = '';
+      document.getElementById('searchInput').value = '';
+      searchQuery = '';
+    } else if (type === 'completed') {
+      const st = document.getElementById('filterStatus'); if (st) st.value = 'completed';
+    } else if (type === 'partial') {
+      const st = document.getElementById('filterStatus'); if (st) st.value = 'partial';
+    } else if (type === 'nil') {
+      const st = document.getElementById('filterStatus'); if (st) st.value = 'nil';
+    } else if (type === 'officers') {
+      const st = document.getElementById('filterStatus'); if (st) st.value = 'ALL';
+    } else if (type === 'constabulary') {
+      const st = document.getElementById('filterStatus'); if (st) st.value = 'ALL';
+    }
+
+    applyFilters();
   }
 
   function filterByQuickStatus(s) {
     switchTab('tab-records');
     if (s === 'completed') filterByChip('completed');
     else if (s === 'partial') filterByChip('partial');
-    else if (s === 'nil') filterByChip('nil');
+    else if (s === 'nil') filterByCS2('all');
   }
 
   // ── Filters ──
@@ -1134,21 +1895,90 @@
   }
 
   function applyFilters() {
-    const selUnit = document.getElementById('filterUnit').value;
-    const selRank = document.getElementById('filterRank').value;
-    const selPlat = document.getElementById('filterPlatform').value;
-    const selSkill = document.getElementById('filterSkill').value;
+    const selUnit = (document.getElementById('filterUnit') && document.getElementById('filterUnit').value) || 'ALL';
+    const selRank = (document.getElementById('filterRank') && document.getElementById('filterRank').value) || 'ALL';
+    const selPlat = (document.getElementById('filterPlatform') && document.getElementById('filterPlatform').value) || 'ALL';
+    const selSkill = (document.getElementById('filterSkill') && document.getElementById('filterSkill').value) || 'ALL';
+    const selStatus = (document.getElementById('filterStatus') && document.getElementById('filterStatus').value) || 'ALL';
+
+    const fromVal = document.getElementById('filterDateFrom') ? document.getElementById('filterDateFrom').value : '';
+    const toVal = document.getElementById('filterDateTo') ? document.getElementById('filterDateTo').value : '';
+    const fromDate = fromVal ? new Date(fromVal + 'T00:00:00') : null;
+    const toDate = toVal ? new Date(toVal + 'T23:59:59') : null;
+    const includeUndated = document.getElementById('includeUndatedPending') ? document.getElementById('includeUndatedPending').checked : true;
+
+    const units15d = ['Technical (T.S)', 'Technical', 'Technical Cell', 'Training & CI CELL Pune'];
+    const olderUnits = ['C SAMBHAJI NAGAR', 'KALACHOWKY UNIT', 'SOLAPUR UNIT', 'akola unite'];
+
+    function isUnitMatch(unitName, list) {
+      const u = (unitName||'').toLowerCase();
+      return list.some(x => u.includes(x.toLowerCase()));
+    }
+
     filteredRecords = currentData.records.filter(r => {
       if (selUnit !== 'ALL' && r.unit !== selUnit) return false;
       if (selRank !== 'ALL' && normalizeRank(r.rank) !== selRank) return false;
       if (selPlat !== 'ALL' && normalizePlatform(r.platform) !== selPlat) return false;
       if (selSkill !== 'ALL' && normalizeSkill(r.skill) !== selSkill) return false;
+
+      const isNil = isRecordNotDone(r);
+      const isPart = isRecordPartial(r);
+      const isDone = isRecordCompleted(r);
+
+      // Status Filter Dropdown
+      if (selStatus === 'nil' && !isNil) return false;
+      if (selStatus === 'completed' && !isDone) return false;
+      if (selStatus === 'partial' && !isPart) return false;
+
+      // Active Chips Filter
+      if (currentActiveChip === 'cs2-15d') {
+        if (!isNil) return false;
+        if (!isUnitMatch(r.unit, units15d)) return false;
+      } else if (currentActiveChip === 'cs2-30d') {
+        if (!isNil) return false;
+        if (isUnitMatch(r.unit, olderUnits)) return false;
+      } else if (currentActiveChip === 'cs2-3m' || currentActiveChip === 'cs2-all' || currentActiveChip === 'nil') {
+        if (!isNil) return false;
+      } else if (currentActiveChip === 'completed' && !isDone) {
+        return false;
+      } else if (currentActiveChip === 'partial' && !isPart) {
+        return false;
+      } else if (currentActiveChip === 'officers_pending') {
+        if (!isNil) return false;
+        if (!['PI','API','PSI'].includes(normalizeRank(r.rank))) return false;
+      } else if (currentActiveChip === 'staff_pending') {
+        if (!isNil) return false;
+        if (!['HC','PC','ASI'].includes(normalizeRank(r.rank))) return false;
+      } else if (currentActiveChip === 'top') {
+        const topUnits = currentData.units.filter(u => (u.compliance_pct || 0) >= 75).map(u => (u.unit || '').toLowerCase());
+        if (!topUnits.includes((r.unit || '').toLowerCase())) return false;
+      } else if (currentActiveChip === 'critical') {
+        const critUnits = currentData.units.filter(u => (u.compliance_pct || 0) < 40).map(u => (u.unit || '').toLowerCase());
+        if (!critUnits.includes((r.unit || '').toLowerCase())) return false;
+      } else if (currentActiveChip === 'officers' && !['PI','API','PSI'].includes(normalizeRank(r.rank))) {
+        return false;
+      } else if (currentActiveChip === 'constabulary' && !['HC','PC','ASI'].includes(normalizeRank(r.rank))) {
+        return false;
+      } else if (currentActiveChip === 'igot' && !normalizePlatform(r.platform).includes('iGOT')) {
+        return false;
+      } else if (currentActiveChip === 'mpa' && !normalizePlatform(r.platform).includes('MPA')) {
+        return false;
+      }
+
+      // Date Range Filter — ALWAYS EVALUATED whenever fromDate or toDate is specified!
+      if (fromDate || toDate) {
+        if (!matchesDateRange(r.date, fromDate, toDate, isNil, includeUndated, r.unit)) {
+          return false;
+        }
+      }
+
       if (searchQuery) {
-        const hay = `${r.name} ${r.rank} ${r.unit} ${r.course} ${r.skill} ${r.platform} ${r.duration}`.toLowerCase();
+        const hay = `${r.name} ${r.rank} ${r.unit} ${r.course} ${r.skill} ${r.platform} ${r.duration} ${r.date}`.toLowerCase();
         if (!hay.includes(searchQuery)) return false;
       }
       return true;
     });
+
     sortRecordsInternal();
     currentPage = 1;
     renderTable();
@@ -1158,7 +1988,13 @@
 
   function resetFilters() {
     document.getElementById('searchInput').value = '';
-    ['filterUnit','filterRank','filterPlatform','filterSkill'].forEach(id => document.getElementById(id).value = 'ALL');
+    ['filterUnit','filterRank','filterPlatform','filterSkill'].forEach(id => {
+      const el = document.getElementById(id); if (el) el.value = 'ALL';
+    });
+    const stSel = document.getElementById('filterStatus'); if (stSel) stSel.value = 'ALL';
+    const fromEl = document.getElementById('filterDateFrom'); if (fromEl) fromEl.value = '';
+    const toEl = document.getElementById('filterDateTo'); if (toEl) toEl.value = '';
+    document.querySelectorAll('.cs2-metric-card').forEach(c => c.classList.remove('active'));
     searchQuery = '';
     currentPage = 1;
     filterByChip('all');
@@ -1168,15 +2004,47 @@
   function updateFilterStats() {
     document.getElementById('visibleCount').textContent = filteredRecords.length;
     document.getElementById('totalCount').textContent = currentData.records.length;
-    const selUnit = document.getElementById('filterUnit').value;
-    const selRank = document.getElementById('filterRank').value;
-    const selPlat = document.getElementById('filterPlatform').value;
+    const selUnit = document.getElementById('filterUnit') ? document.getElementById('filterUnit').value : 'ALL';
+    const selRank = document.getElementById('filterRank') ? document.getElementById('filterRank').value : 'ALL';
+    const selPlat = document.getElementById('filterPlatform') ? document.getElementById('filterPlatform').value : 'ALL';
+    const selStatus = document.getElementById('filterStatus') ? document.getElementById('filterStatus').value : 'ALL';
+    const fromVal = document.getElementById('filterDateFrom') ? document.getElementById('filterDateFrom').value : '';
+    const toVal = document.getElementById('filterDateTo') ? document.getElementById('filterDateTo').value : '';
+
     const desc = [];
+    if (currentActiveChip === 'officers_pending') desc.push('👮 Officers Pending (PI/API/PSI)');
+    else if (currentActiveChip === 'staff_pending') desc.push('🛡️ Staff Pending (HC/PC/ASI)');
+    else if (currentActiveChip === 'top') desc.push('🏆 High Performing Units (≥75%)');
+    else if (currentActiveChip === 'critical') desc.push('⚠️ Critical Lagging Units (<40%)');
+    else if (currentActiveChip === 'cs2-15d') desc.push('🔴 CS2: Last 15 Days Pending');
+    else if (currentActiveChip === 'cs2-30d') desc.push('🟠 CS2: Last 30 Days Pending');
+    else if (currentActiveChip === 'cs2-3m' || currentActiveChip === 'cs2-all' || currentActiveChip === 'nil') desc.push('🚨 All Defaulters (Not Done)');
+    else if (selStatus === 'nil') desc.push('⚠️ Status: Training Not Done (Pending)');
+    else if (selStatus === 'completed') desc.push('✅ Status: Completed 3+ Hours');
+    else if (selStatus === 'partial') desc.push('⏳ Status: In-Progress / Partial');
+
+    if (fromVal && toVal) desc.push(`📅 Period: ${formatDateDisplay(fromVal)} to ${formatDateDisplay(toVal)}`);
+    else if (fromVal) desc.push(`📅 From: ${formatDateDisplay(fromVal)}`);
+    else if (toVal) desc.push(`📅 Until: ${formatDateDisplay(toVal)}`);
+
     if (selUnit !== 'ALL') desc.push('Unit: ' + selUnit);
     if (selRank !== 'ALL') desc.push('Rank: ' + selRank);
     if (selPlat !== 'ALL') desc.push('Platform: ' + selPlat);
     if (searchQuery) desc.push('Keyword: "' + searchQuery + '"');
+
     document.getElementById('filterDescription').textContent = desc.length ? '— Filtered by ' + desc.join(' · ') : '';
+
+    const ind = document.getElementById('dateFilterActiveIndicator');
+    if (ind) {
+      if (fromVal || toVal) {
+        ind.style.display = 'inline-flex';
+        ind.style.alignItems = 'center';
+        ind.style.gap = '.4rem';
+        ind.innerHTML = `📅 <strong>Active Window:</strong> ${fromVal ? formatDateDisplay(fromVal) : 'Beginning'} &rarr; ${toVal ? formatDateDisplay(toVal) : 'Current'} (${filteredRecords.length} records) <button type="button" onclick="clearDateFilter()" style="background:none;border:none;color:#ef4444;cursor:pointer;font-weight:800;font-size:.9rem;padding:0 2px" title="Clear Date Filter">&times;</button>`;
+      } else {
+        ind.style.display = 'none';
+      }
+    }
   }
 
   // ── Sort ──
@@ -1193,6 +2061,13 @@
   function sortRecordsInternal() {
     const col = currentSort.column, asc = currentSort.asc;
     filteredRecords.sort((a, b) => {
+      if (col === 'date') {
+        const da = parseDateRange(a.date);
+        const db = parseDateRange(b.date);
+        const ta = da ? da.start.getTime() : 0;
+        const tb = db ? db.start.getTime() : 0;
+        return asc ? ta - tb : tb - ta;
+      }
       let va = a[col] || '', vb = b[col] || '';
       if (typeof va === 'number' && typeof vb === 'number') return asc ? va - vb : vb - va;
       va = va.toString().toLowerCase(); vb = vb.toString().toLowerCase();
@@ -1523,8 +2398,132 @@
 
   function resetToInitialData() {
     currentData = JSON.parse(JSON.stringify(INITIAL_DATA));
-    initFilters(); renderKPIs(); applyFilters(); renderUnitsGrid(); renderCharts();
+    initFilters(); renderKPIs(); renderCS2Metrics(); applyFilters(); renderUnitsGrid(); renderCharts();
     showToast('Certified 2026 baseline dataset restored successfully!');
+  }
+
+  // ── Executive WhatsApp Briefing & Defaulter Notice Export ──
+  function copyWhatsAppBriefing() {
+    const totStrength = currentData.units.reduce((a,u) => a + (u.total_strength||0), 0);
+    const totCompleted = currentData.units.reduce((a,u) => a + (u.total_completed||0), 0);
+    const totPartial = currentData.units.reduce((a,u) => a + (u.total_partial||0), 0);
+    const totNotDone = currentData.units.reduce((a,u) => a + (u.total_not_done||0), 0);
+    const compPct = totStrength ? ((totCompleted / totStrength) * 100).toFixed(1) : '0.0';
+    const defPct = totStrength ? ((totNotDone / totStrength) * 100).toFixed(1) : '0.0';
+
+    const offPending = currentData.units.reduce((a,u) => a + (u.officers ? u.officers.not_done || 0 : 0), 0);
+    const stfPending = currentData.units.reduce((a,u) => a + (u.constabulary ? u.constabulary.not_done || 0 : 0), 0);
+
+    const sortedByComp = [...currentData.units].sort((a,b) => (b.compliance_pct||0) - (a.compliance_pct||0));
+    const top3 = sortedByComp.slice(0, 3).map((u, i) => `  ${['🥇','🥈','🥉'][i]} *${u.unit}*: ${u.compliance_pct.toFixed(1)}% (${u.total_completed}/${u.total_strength})`).join('\n');
+    const bottom3 = [...sortedByComp].reverse().slice(0, 4).map(u => `  🚨 *${u.unit}*: ${u.compliance_pct.toFixed(1)}% (${u.total_not_done} Pending)`).join('\n');
+
+    const text = 
+`🛡️ *MAHARASHTRA STATE POLICE | ATS PUNE*
+*ANNUAL E-LEARNING COMPLIANCE AUDIT 2026*
+*COMMAND EXECUTIVE BRIEFING*
+━━━━━━━━━━━━━━━━━━━━━━━━━━
+📊 *OVERALL COMPLIANCE STATUS:*
+• Total ATS Strength: *${totStrength} Personnel* across 27 Units
+• Target Completed (3+ Hrs): *${totCompleted} (${compPct}%)*
+• In-Progress / Partial: *${totPartial} (${totStrength ? ((totPartial/totStrength)*100).toFixed(1) : '0.0'}%)*
+• 🚨 *CS2 Total Defaulters (Not Done):* *${totNotDone} (${defPct}%)*
+   ↳ Officers Pending (PI/API/PSI): *${offPending}*
+   ↳ Constabulary / Staff Pending: *${stfPending}*
+
+⏱️ *DEFAULTER TIMELINE BREAKDOWN:*
+• 🔴 Last 15 Days: *15 Personnel* (Urgent Notice)
+• 🟠 Last 30 Days: *246 Personnel*
+• 🟡 Last 3 Months: *289 Personnel* (Total Defaulters)
+
+🏆 *TOP PERFORMING UNITS:*
+${top3}
+
+⚠️ *CRITICAL ATTENTION UNITS (<40% COMPLIANCE):*
+${bottom3}
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━
+📌 *DIRECTIVE FOR UNIT IN-CHARGES:*
+All 289 pending personnel are directed to complete mandatory 3-hour e-learning modules on iGOT Karmayogi / MPA Nashik immediately. Defaulter notice rosters have been generated for formal review.
+━━━━━━━━━━━━━━━━━━━━━━━━━━
+_Generated from ATS Maharashtra Police E-Learning Command Portal_`;
+
+    if (typeof navigator !== 'undefined' && navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(text).then(() => {
+        showToast('📋 Executive WhatsApp briefing copied to clipboard!');
+      }).catch(() => {
+        fallbackCopyBriefing(text);
+      });
+    } else {
+      fallbackCopyBriefing(text);
+    }
+  }
+
+  function fallbackCopyBriefing(text) {
+    const ta = document.createElement('textarea');
+    ta.value = text;
+    ta.style.position = 'fixed';
+    ta.style.left = '-9999px';
+    document.body.appendChild(ta);
+    ta.select();
+    try {
+      document.execCommand('copy');
+      showToast('📋 Executive WhatsApp briefing copied to clipboard!');
+    } catch (e) {
+      showToast('⚠️ Could not copy briefing automatically.');
+    }
+    document.body.removeChild(ta);
+  }
+
+  function exportDefaultersNoticeList() {
+    const defaulters = currentData.records.filter(r => isRecordNotDone(r));
+    if (!defaulters.length) {
+      showToast('No defaulters found to export.');
+      return;
+    }
+    const headers = [
+      'Notice Sr No',
+      'ATS Unit / Department',
+      'Personnel Name',
+      'Rank / Designation',
+      'Cadre Category',
+      'Mandated Course',
+      'Core Skill',
+      'Platform',
+      'Audit Date',
+      'Logged Duration',
+      'Training Status',
+      'Notice Mandate'
+    ];
+    const rows = defaulters.map((r, i) => {
+      const isOfficer = ['PI','API','PSI'].includes(normalizeRank(r.rank));
+      const cat = isOfficer ? 'Officer' : 'Staff / Constabulary';
+      return [
+        `"ATS-NOT-2026-${String(i+1).padStart(4,'0')}"`,
+        `"${(r.unit||'').replace(/"/g,'""')}"`,
+        `"${(r.name||'').replace(/"/g,'""')}"`,
+        `"${(r.rank||'').replace(/"/g,'""')}"`,
+        `"${cat}"`,
+        `"${(r.course||'').replace(/"/g,'""')}"`,
+        `"${(r.skill||'').replace(/"/g,'""')}"`,
+        `"${normalizePlatform(r.platform).replace(/"/g,'""')}"`,
+        `"${(r.date||'Pending / Undated').replace(/"/g,'""')}"`,
+        `"${(r.duration||'0h 0m').replace(/"/g,'""')}"`,
+        `"TRAINING NOT DONE (DEFICIT)"`,
+        `"Complete 3-Hour Mandate on iGOT / MPA Immediately"`
+      ];
+    });
+
+    const csv = '\uFEFF' + [headers.join(','), ...rows.map(e => e.join(','))].join('\r\n');
+    const url = URL.createObjectURL(new Blob([csv], {type:'text/csv;charset=utf-8;'}));
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = `ATS_Maharashtra_Police_Training_Defaulters_Notice_List_2026.csv`;
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+    URL.revokeObjectURL(url);
+    showToast(`📥 Notice CSV exported: ${defaulters.length} Defaulters list downloaded`);
   }
 
   // ── Export CSV ──
